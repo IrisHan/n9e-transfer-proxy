@@ -1,0 +1,13 @@
+http:
+  http_listen_port:  8032
+transfer:
+  - region_name: idc-1
+    api_addr:  http://127.0.0.1:8008
+    #    hbs_rpc_addrs:
+    #      - 10.14.68.194:6030
+    #      - 10.14.68.195:6030
+    time_out_second: 5
+
+  - region_name: idc-2
+    api_addr:  http://10.178.27.153:8008
+    time_out_second: 5
