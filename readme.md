@@ -1,3 +1,6 @@
+# 功能说明
+- 该服务用于实现nightingales生产环境多机房架构，将nightingale在每个机房独立部署一套，然后部署该服务+修改nginx路由规则，对以下几个接口路由至本服务，nigthingale前端即可通过该服务实现多机房指标聚合。这里指的多套nightingale中，mysql必须共用一套，m3db和所有服务都各机房搭建即可。
+
 # 架构说明
 ![image](https://github.com/ning1875/n9e-transfer-proxy/blob/main/images/n9e-transfer-proxy-arch.png)
 
@@ -10,7 +13,7 @@
 - Request URL: http://127.0.0.1:8032/api/index/tagkv     对应 QueryTagPairs(recv dataobj.EndpointMetricRecv) []dataobj.IndexTagkvResp
 - Request URL: http://127.0.0.1:8032/api/index/counter/fullmatch  对应 QueryIndexByFullTags(recv []dataobj.IndexByFullTagsRecv) ([]dataobj.IndexByFullTagsResp, int)
 - Request URL: http://127.0.0.1:8032/api/transfer/data/ui  对应 QueryDataForUI(input dataobj.QueryDataForUI) []*dataobj.TsdbQueryResponse
-
+-
 */
 ```
 - 所以`proxy`只需要实现上述4个接口的代理即可
