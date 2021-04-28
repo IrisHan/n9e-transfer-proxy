@@ -1,11 +1,11 @@
 package http
 
 import (
+	"github.com/gin-gonic/gin"
+	"github.com/toolkits/pkg/logger"
 	"n9e-transfer-proxy/src/config"
 	"net/http"
 	"time"
-
-	"github.com/gin-gonic/gin"
 )
 
 func StartGin(listenAddr string, cg *config.Config) error {
@@ -15,6 +15,7 @@ func StartGin(listenAddr string, cg *config.Config) error {
 	r.Use(gin.Logger())
 	m := make(map[string]*config.TransferConfig)
 	for _, t := range cg.TransferConfigC {
+		logger.Debugf("[get config info][region:%#v]", *t)
 		m[t.RegionName] = t
 	}
 

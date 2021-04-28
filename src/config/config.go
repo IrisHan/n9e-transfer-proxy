@@ -5,11 +5,22 @@ import (
 	"fmt"
 	"github.com/spf13/viper"
 	"github.com/toolkits/pkg/file"
+	"n9e-transfer-proxy/src/logs"
 )
+
+var info *Config
 
 type Config struct {
 	TransferConfigC []*TransferConfig `mapstructure:"transfer"`
 	HttpC           *HttpConfig       `mapstructure:"http"`
+	Logger          logs.Config       `yaml:"logger"`
+	Router          *RouterConfig     `mapstructure:"router"`
+}
+
+type RouterConfig struct {
+	RootPrefix   string `mapstructure:"root_prefix"`
+	SourcePrefix string `mapstructure:"source_prefix"`
+	DstPrefix    string `mapstructure:"dst_prefix"`
 }
 
 type TransferConfig struct {
@@ -42,6 +53,12 @@ func LoadFile(conf string) (*Config, error) {
 	if err != nil {
 		return nil, fmt.Errorf("unmarshal config error:%v", err)
 	}
-	return &cfg, nil
 
+	info = &cfg
+	fmt.Printf("config is :%+v %s\n", cfg, cfg.Router.DstPrefix)
+	return info, nil
+}
+
+func Conf() *Config {
+	return info
 }

@@ -1,13 +1,35 @@
 http:
   http_listen_port:  8032
 transfer:
-  - region_name: idc-1
-    api_addr:  http://127.0.0.1:8008
-    #    hbs_rpc_addrs:
-    #      - 10.14.68.194:6030
-    #      - 10.14.68.195:6030
+  - region_name: bj10
+    api_addr:  http://argus.local.bj10.global.nucc.com
     time_out_second: 5
 
-  - region_name: idc-2
-    api_addr:  http://10.178.27.153:8008
+  - region_name: bj11
+    api_addr:  http://argus.local.bj11.global.nucc.com
     time_out_second: 5
+
+  - region_name: sh21
+    api_addr:  http://argus.local.sh21.global.nucc.com
+    time_out_second: 5
+
+  - region_name: sz30
+    api_addr:  http://argus.local.sz30.global.nucc.com
+    time_out_second: 5
+
+  - region_name: sz31
+    api_addr:  http://argus.local.sz31.global.nucc.com
+    time_out_second: 5
+
+
+logger:
+  dir: logs
+  level: INFO
+  keepHours: 96
+
+router:
+  # root_prefix: /api 不要带末尾斜杠
+  root_prefix: /api
+  # 下面两个prefix: /api 一定带末尾斜杠
+  source_prefix: /api/
+  dst_prefix: /api/proxy/
