@@ -1,11 +1,17 @@
 # 功能说明
 - 该服务用于实现nightingales生产环境多机房架构，将nightingale在每个机房独立部署一套，然后部署该服务+修改nginx路由规则，对以下几个接口路由至本服务，nigthingale前端即可通过该服务实现多机房指标聚合。这里指的多套nightingale中，mysql必须共用一套，m3db和所有服务都各机房搭建即可。
+- 该服务对接的nightingales 版本为`v 3.7.0`
+
+# 产品效果
+![image](https://github.com/IrisHan/n9e-transfer-proxy/blob/main/images/1.bmp)
+![image](https://github.com/IrisHan/n9e-transfer-proxy/blob/main/images/2.bmp)
+![image](https://github.com/IrisHan/n9e-transfer-proxy/blob/main/images/3.bmp)
 
 # 架构说明
 ![image](https://github.com/ning1875/n9e-transfer-proxy/blob/main/images/n9e-transfer-proxy-arch.png)
 
 
-- 分析前端请求发现在使用`m3db`作为后端时需要下面`4`个接口
+- 分析前端请求发现在使用`m3db`作为后端时需要下面`5`个接口
 ```golang
 /*
 下面对应都是transfer
@@ -13,10 +19,10 @@
 - Request URL: http://127.0.0.1:8032/api/index/tagkv     对应 QueryTagPairs(recv dataobj.EndpointMetricRecv) []dataobj.IndexTagkvResp
 - Request URL: http://127.0.0.1:8032/api/index/counter/fullmatch  对应 QueryIndexByFullTags(recv []dataobj.IndexByFullTagsRecv) ([]dataobj.IndexByFullTagsResp, int)
 - Request URL: http://127.0.0.1:8032/api/transfer/data/ui  对应 QueryDataForUI(input dataobj.QueryDataForUI) []*dataobj.TsdbQueryResponse
--
+- Request URL: http://127.0.0.1:8032/api/monapi/index/tagkv 
 */
 ```
-- 所以`proxy`只需要实现上述4个接口的代理即可
+- 所以`proxy`只需要实现上述5个接口的代理即可
 - 将原始请求并发打向后端所有`transfer`接口
 - 将数据`merge`后在返回前端
 - 在使用`m3db`作为存储时，有`布隆过滤器`顶在最前端，所以查询不存在该机房的数据所引发的资源开销不大
