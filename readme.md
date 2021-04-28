@@ -3,9 +3,9 @@
 - 该服务对接的nightingales 版本为`v 3.7.0`
 
 # 产品效果
-![image](https://github.com/IrisHan/n9e-transfer-proxy/blob/main/images/1.bmp)
-![image](https://github.com/IrisHan/n9e-transfer-proxy/blob/main/images/2.bmp)
-![image](https://github.com/IrisHan/n9e-transfer-proxy/blob/main/images/3.bmp)
+![image](https://github.com/IrisHan/n9e-transfer-proxy/blob/main/images/1.jpg)
+![image](https://github.com/IrisHan/n9e-transfer-proxy/blob/main/images/2.jpg)
+![image](https://github.com/IrisHan/n9e-transfer-proxy/blob/main/images/3.jpg)
 
 # 架构说明
 ![image](https://github.com/ning1875/n9e-transfer-proxy/blob/main/images/n9e-transfer-proxy-arch.png)
