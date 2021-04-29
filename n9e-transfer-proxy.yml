@@ -2,23 +2,23 @@ http:
   http_listen_port:  8032
 transfer:
   - region_name: bj10
-    api_addr:  http://argus.local.bj10.global.nucc.com
+    api_addr:  http://argus.local.bj10.global.com
     time_out_second: 5
 
   - region_name: bj11
-    api_addr:  http://argus.local.bj11.global.nucc.com
+    api_addr:  http://argus.local.bj11.global.com
     time_out_second: 5
 
   - region_name: sh21
-    api_addr:  http://argus.local.sh21.global.nucc.com
+    api_addr:  http://argus.local.sh21.global.com
     time_out_second: 5
 
   - region_name: sz30
-    api_addr:  http://argus.local.sz30.global.nucc.com
+    api_addr:  http://argus.local.sz30.global.com
     time_out_second: 5
 
   - region_name: sz31
-    api_addr:  http://argus.local.sz31.global.nucc.com
+    api_addr:  http://argus.local.sz31.global.com
     time_out_second: 5
 
 
